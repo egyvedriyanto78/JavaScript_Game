@@ -183,6 +183,36 @@ class BigPoison extends Food{
   }
 }
 
+class Power extends Food{
+  const(){
+    if(score%10==0){
+      this.x = floor(random(1, gridSize)) * space
+      this.y = floor(random(1, gridSize)) * space
+    }else{
+      this.x = 500;
+      this.y = 500;
+    }
+  }
+  
+  newPos(){
+    if(score%10==0){
+      this.x = floor(random(1, gridSize)) * space
+      this.y = floor(random(1, gridSize)) * space
+    }else{
+      this.x = 500;
+      this.y = 500;
+    }
+  }
+  
+  show(){
+    if(score%10==0 && score!=0){
+      noStroke()
+      fill(255, 255, 0)
+      rect(this.x, this.y, space/2, space/2, 8)
+    }
+  }
+}
+
 class Level{
   currentLevel(){
     if(score<8){
