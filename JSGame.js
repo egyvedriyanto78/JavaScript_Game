@@ -118,6 +118,13 @@ class Player{
       boss.newPos()
     }else if(this.pos.x === boss.x && this.pos.y === boss.y){
       player.dead = true;
+    }else if(this.pos.x === power.x && this.pos.y === power.y){
+      score += 5;
+      food.newPos()
+      poison.newPos()
+      boss.newPos()
+      power.newPos()
+      
     }
   }
   show(){
