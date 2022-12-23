@@ -9,6 +9,9 @@ var dir
 var dev
 var lvl
 
+let bag
+let bagS
+
 var score = 0
 
 document.addEventListener('keydown', function(k){
@@ -19,6 +22,8 @@ document.addEventListener('keydown', function(k){
 
 function setup(){
   createCanvas(400, 400)
+  bag = loadImage('bag3.png');
+  bagS = loadImage('bag3Super.png');
   rectMode(CENTER)
   // frameRate(10)
   
@@ -39,6 +44,7 @@ function draw(){
   
   
   if(!player.dead){
+    image(bag, 0, 0);
     player.move()
     player.edges()
     player.eat()
