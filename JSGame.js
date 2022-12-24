@@ -131,11 +131,18 @@ class Player{
       maps.showMaps()
     }else if(this.pos.x === boss.x && this.pos.y === boss.y){
       player.dead = true;
+    }else if(this.pos.x === attack.x && this.pos.y === attack.y){
+      score += 5;
+      food.newPos()
+      poison.newPos()
+      boss.newPos()
+      attack.newPos()
+      maps.showMaps()
     }
   }
   show(){
     noStroke()
-    fill(255)
+    fill(255, 255, 127)
     rect(this.pos.x, this.pos.y, space, space, 5) 
   }
 }
@@ -268,22 +275,6 @@ class Level{
       frameRate(24)
     }
   }
-}
-
-class Map{
-  constructor(){
-    bag = loadImage('bag3.png');
-    bagS = loadImage('bag3Super.png');
-  }
-  
-  showMap(){
-    image(bag, 0, 0);
-  }
-  
-  showMaps(){
-    image(bagS, 0, 0);
-  }
-  
 }
 
 class Develope{
