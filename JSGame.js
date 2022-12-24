@@ -8,9 +8,11 @@ var boss
 var dir
 var dev
 var lvl
+var attack
 
-let bag
-let bagS
+var bag
+var bags
+var maps
 
 var score = 0
 
@@ -22,11 +24,11 @@ document.addEventListener('keydown', function(k){
 
 function setup(){
   createCanvas(400, 400)
-  bag = loadImage('bag3.png');
-  bagS = loadImage('bag3Super.png');
   rectMode(CENTER)
   // frameRate(10)
   
+  bag = loadImage('bag3.png');
+  bagS = loadImage('bag3Super.png');
   gridSize = 20
   space = width/gridSize
   
@@ -36,15 +38,16 @@ function setup(){
   poison = new Poison()
   boss = new BigPoison()
   lvl = new Level()
+  attack = new Attack()
+  maps = new Map()
 
 }
 
 function draw(){
   background(40, 60, 80)
   
-  
   if(!player.dead){
-    image(bag, 0, 0);
+    maps.showMap()
     player.move()
     player.edges()
     player.eat()
@@ -57,6 +60,7 @@ function draw(){
     food.show()
     poison.show()
     boss.show()
+    attack.show()
     
     textAlign(CENTER)
     fill('#d9c3f7');
@@ -111,20 +115,22 @@ class Player{
       food.newPos()
       poison.newPos()
       boss.newPos()
+      attack.newPos()
     }else if(this.pos.x === poison.x && this.pos.y === poison.y){
       score-=3;
       food.newPos()
       poison.newPos()
       boss.newPos()
-    }else if(this.pos.x === boss.x && this.pos.y === boss.y){
-      player.dead = true;
-    }else if(this.pos.x === power.x && this.pos.y === power.y){
+      attack.newPos()
+    }else if(this.pos.x === attack.x && this.pos.y === attack.y){
       score += 5;
       food.newPos()
       poison.newPos()
       boss.newPos()
-      power.newPos()
-      
+      attack.newPos()
+      maps.showMaps()
+    }else if(this.pos.x === boss.x && this.pos.y === boss.y){
+      player.dead = true;
     }
   }
   show(){
@@ -190,7 +196,7 @@ class BigPoison extends Food{
   }
 }
 
-class Power extends Food{
+class Attack extends Food{
   const(){
     if(score%10==0){
       this.x = floor(random(1, gridSize)) * space
@@ -222,7 +228,6 @@ class Power extends Food{
 
 class Level{
   //frameRate = speed
-  
   currentLevel(){
     if(score<8){
       textAlign(CENTER)
@@ -263,6 +268,22 @@ class Level{
       frameRate(24)
     }
   }
+}
+
+class Map{
+  constructor(){
+    bag = loadImage('bag3.png');
+    bagS = loadImage('bag3Super.png');
+  }
+  
+  showMap(){
+    image(bag, 0, 0);
+  }
+  
+  showMaps(){
+    image(bagS, 0, 0);
+  }
+  
 }
 
 class Develope{
