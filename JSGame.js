@@ -247,7 +247,7 @@ class Level{
       text("HARD", 200, 390);
       frameRate(16)
     }else if(score>=21 && score<26){
-      fill('#ff0000');
+      fill('#ff7f50');
       text("EXTREME", 200, 390);
       frameRate(20)
     }
@@ -256,7 +256,7 @@ class Level{
   maxLevel(){
     if(score>=26){
       textAlign(CENTER)
-      fill('#000000');
+      fill('#ff0000');
       textFont('Courier')
       textSize(20); 
       text("NIGHTMARE", 200, 390);
