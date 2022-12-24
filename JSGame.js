@@ -277,6 +277,22 @@ class Level{
   }
 }
 
+class Map{
+  constructor(){
+    bag = loadImage('mapB.png');
+    bagS = loadImage('mapS.png');
+  }
+  
+  showMap(){
+    image(bag, -2200, -1000);
+  }
+  
+  showMaps(){
+    image(bagS, -2200, -1000);
+  }
+  
+}
+
 class Develope{
   constructor(){
       
