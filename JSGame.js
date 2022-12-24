@@ -221,6 +221,8 @@ class Power extends Food{
 }
 
 class Level{
+  //frameRate = speed
+  
   currentLevel(){
     if(score<8){
       textAlign(CENTER)
